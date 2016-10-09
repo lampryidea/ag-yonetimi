@@ -295,9 +295,26 @@ if [[ $AP = Not-Associated ]]; then echo -e "\n$yellow Kablosuz aygıt kapalı, 
 _fping_kr () {
 	clear; echo -e "\n\n $white Uygulamanın çalışabilmesi için,\n\n $cyan fping, bc$white ve$cyan ethtool$white paketinin kurulu olması gerekiyor.\n\n  Kurulum otomatik olarak başlayacak.. Bekleyin.! \n\n  İptal etmek için, şifre sorgusunda CTRL + C tuşunu kullanabilirsiniz$son\n"; sleep 3; clear
 	DGTM=$(cat /etc/os-release | grep '^ID=' | cut -c4-10)
-	if [[ $DGTM = 'arch' ]]; then sudo pacman -Sy fping bc ethtool --noconfirm ; sleep 2; clear
-	elif  [[ $DGTM = 'ubuntu' ]]; then sudo apt install fping bc; sleep 2; clear
-	elif  [[ $DGTM = 'manjaro' ]]; then sudo pacman -Sy fping bc ethtool --noconfirm; sleep 2; clear
+	if [ $DGTM = 'arch' ];
+		then 
+		sudo pacman -Sy fping bc ethtool --noconfirm 
+		sleep 2
+		clear
+	elif [ $DGTM = 'ubuntu' ];
+		then 
+		sudo apt install fping bc
+		sleep 2
+		clear
+	elif [ $DGTM = 'linuxmi' ];
+		then 
+		sudo apt install fping bc
+		sleep 2
+		clear
+	elif [ $DGTM = 'manjaro' ];
+		then 
+		sudo pacman -Sy fping bc ethtool --noconfirm
+		sleep 2
+		clear
 	else echo -e "\n\n$red Kurulum bölümü, kullandığınız dağıtım için ilgili yönergeye sahip değil. :(  \n\n$cyan fping $red uygulamasını dağıtmınıza uygun olarak elle kurmayı deneyin.! $son\n"; sleep 10; fi; clear
 	if [ -x /usr/bin/fping ] && [ -x /usr/bin/bc ] && [[ ((-x /usr/bin/ethtool) || (-x /sbin/ethtool)) ]]; then _baglanti_bilgilerim; else clear; echo -e "\n\n $red Kurulum aşaması tamamlanamadı. Eksik paketleriniz var. \n\n Paketleri elle kurmayı deneyin ve daha sonra tekrar çalıştırın$son\n\n"; sleep 2
 	exit; fi
