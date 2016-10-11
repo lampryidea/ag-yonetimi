@@ -1,1 +1,7 @@
 Ağ Yönetimi
+Bu program başlangıç olarak kablolu ve kablosuz ağları denetler ve durumlarını özetler.
+
+Gereklilikler:
+ethtool
+bc
+fping
